@@ -1,26 +1,38 @@
 'use strict'
 
 const calculate = (totalSum, basketAmount, promo) => {
-    let total = 0;
+    let total = totalSum;
 
-    if (basketAmount > 10) {
-        let discountOne = totalSum/100 * 3;
-        total = totalSum - discountOne;
-        console.log(total);
-    } else if (totalSum > 30000) {
-        let discountTwo = (totalSum-30000)/100 * 15;
-        total = totalSum - discountTwo;
-       console.log(total);
-    } else if (promo === 'METHED') {
-        let discountTree = totalSum/100 * 10;
-        total = totalSum - discountTree;
-        console.log(total);
-    } else if (promo === 'G3H2Z1') {
-        if ((total = totalSum - discountOne - discountTwo - discountTree) > 2000) {
-            let discountFour = totalSum - 500;
+    const itemAmountDiscount = (qty) => {
+        if (qty > 10) {
+            return (total - (total / 100 * 3));
         }
-        return total;
     }
+
+    console.log(itemAmountDiscount(basketAmount));
+
+    const sumDiscount = (sum) => {
+        if (sum > 30000) {
+            return (sum - ((sum - 30000) / 100 * 15));
+        }
+    }
+
+    console.log(sumDiscount(totalSum));
+
+    const promoCode = (code) => {
+        if (code === 'METHED') {
+            return total - (total / 100 * 10);
+        }
+    }
+
+    console.log(promoCode(promo));
+
+   const promoCode2 = (str) => {
+       if (str === 'G3H2Z1' && total > 2000) {
+           return total - 500;
+       }
+    }
+    console.log(promoCode2('G3H2Z1'));
 }
 
 console.log(calculate(35000,12, 'METHED'));
