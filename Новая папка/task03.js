@@ -3,42 +3,25 @@
 const calculate = (totalSum, basketAmount, promo) => {
     let total = totalSum;
 
-    let finalCost = 0;
-
-    const itemAmountDiscount = (qty) => {
-        if (qty > 10) {
-            return finalCost = (total - (total / 100 * 3));
-        }
+    if (basketAmount > 10) {
+        total -= total / 100 * 3;
     }
 
-    console.log(itemAmountDiscount(basketAmount));
-
-    const sumDiscount = (sum) => {
-        if (sum > 30000) {
-            return (finalCost - ((sum - 30000) / 100 * 15));
-        }
+    if (totalSum > 30000) {
+        total -= (totalSum - 30000) / 100 * 15;
     }
 
-    console.log(sumDiscount(totalSum));
+    if (promo) {
+        if (promo === 'METHED') {
+            total -= total / 100 * 10;
+        }
 
-    const promoCode = (code) => {
-        if (code === 'METHED') {
-            return finalCost- (total / 100 * 10);
+        if (promo === 'G3H2Z1' && total > 2000) {
+            total -= 500;
         }
     }
-
-    console.log(promoCode(promo));
-
-   const promoCode2 = (str) => {
-       if (str === 'G3H2Z1' && finalCost > 2000) {
-           return finalCost - 500;
-       }
-    };
-
-    console.log(promoCode2('G3H2Z1'));
-
-
-};
+    return total;
+}
 
 
 console.log(calculate(35000,12, 'METHED'));
