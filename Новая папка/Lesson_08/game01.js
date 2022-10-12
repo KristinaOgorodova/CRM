@@ -1,25 +1,28 @@
 'use strict'
 
-const gameNum = Math.floor(Math.random() * 100) + 1;
-console.log(gameNum)
+const guessNumber = () => {
+    const gameNum = Math.floor(Math.random() * 100) + 1;
+    console.log("Загаданное число: ", gameNum);
+    let userNumber = ' ';
 
-let personNum = Number(prompt('Угадай число от 0 до 100:',0));
+    while (gameNum !== userNumber) {
+        userNumber = +prompt('Введите число');
+        if (userNumber === 0) {
+            alert('Игра окончена');
+            return;
+        } else if (Number.isNaN(userNumber)) {
+            alert('Введи число');
+        } else if (userNumber > gameNum) {
+            alert('Меньше!');
+        } else if (userNumber < gameNum) {
+            alert('Больше!');
+        } else if (userNumber === gameNum) {
+            alert('Правильно');
+        }
+    }
+}
 
-
-    if (personNum > gameNum) {
-        alert('Меньше!');
-       // Number(prompt('Введите новый вариант: '));
-    }
-    if (personNum < gameNum) {
-        alert('Больше!');
-        //Number(prompt('Введите новый вариант: '));
-    }
-    if (gameNum === personNum) {
-        alert('Правильно!');
-    }
-    if (!Number.isNaN(personNum)) {
-        prompt('Введите число:');
-    };
+guessNumber();
 
 
 
