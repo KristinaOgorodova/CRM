@@ -5,7 +5,8 @@ const cart = {
     totalPrice: 0,
     count: 0,
     getTotalPrice() {
-        return this.items.reduce((sum,price) => sum + this.items[price]);
+        this.totalPrice = this.items.reduce((sum,obj) => sum + obj.price);
+        return this.totalPrice;
     },
     add(n, p, qty) {
         if (qty === undefined) qty = 1;
@@ -38,9 +39,7 @@ const cart = {
 };
 
 cart.add('cup', 300, 2);
-
 cart.add('cup', 300, 2);
 cart.getTotalPrice();
-cart.print();
 
 
