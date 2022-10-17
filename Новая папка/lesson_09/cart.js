@@ -5,41 +5,33 @@ const cart = {
     totalPrice: 0,
     count: 0,
     getTotalPrice() {
-        this.totalPrice = this.items.reduce((sum,obj) => sum + obj.price);
         return this.totalPrice;
     },
-    add(n, p, qty) {
-        if (qty === undefined) qty = 1;
-
-        const obj = {
-            name: n,
-            price: p,
-            amount: qty,
-        };
-        this.items.push(obj);
-        this.increaseCount(qty);
-        this.calculateItemPrice(p);
+    add(name, price, count =1) {
+        const obj = {name, price,count};
+        cart.items.push(obj);
+        this.increaseCount(count);
+        this.calculateItemPrice(price, count);
     },
-    increaseCount(n) {
-       return this.count += n;
+    increaseCount(count) {
+       return this.count += count;
     },
-    calculateItemPrice (num) {
-        return this.count * num ;
+    calculateItemPrice (price,count) {
+        return this.totalPrice += price * count;
     },
     clear() {
-        for (const prop of Object.getOwnPropertyNames(cart)) {
-            delete cart[prop];
-        }
+       this.totalPrice = 0;
+       this.count = 0;
+       this.items =[];
     },
     print() {
-        const str =JSON.stringify(cart);
-        console.log(str);
-        console.log(this.totalPrice);
+        console.log(JSON.stringify(cart));
     },
 };
 
+cart.add('cup', 100, 5);
 cart.add('cup', 300, 2);
-cart.add('cup', 300, 2);
-cart.getTotalPrice();
+
+cart.print();
 
 
