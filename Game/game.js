@@ -16,24 +16,58 @@
       };
 
       return function start () {
-          let computer = getRandomIntInclusive(1,15);
-          if (computer <= 5){
-              computer = 'камень';
-          }else if (computer <= 10){
-              computer = 'ножницы';
-          }else {
-              computer = 'бумага';
-          }
+          let computer = FIGURES[getRandomIntInclusive(0, 2)];
           console.log(computer);
           let userAnswer = ' ';
-          userAnswer = prompt('Напишите Ваш ответ: камень, ножницы, бумага').toLowerCase();
-          if (userAnswer === computer) {
-              alert('Ничья!');
-          } else if (userAnswer === 'камень') {
-              if (computer === 'бумага') {
-                  computer ++;
-                  alert(`Результат: ${player}: ${computer}`);
-              }
+          userAnswer = prompt('Напишите Ваш ответ: камень, ножницы, бумага');
+         if ((result.player + result.computer) === 5) {
+             confirm('Еще?');
+          }else {
+              if  (computer === 'камень' && userAnswer === "бумага") {
+              result.player++;
+              alert(`
+              Вы выиграли!
+              Computer: ${result.computer}.
+              Вы: ${result.player}`);
+          } if (computer === 'камень' && userAnswer === "ножницы") {
+              result.computer++;
+              alert(`
+              Вы проиграли!
+              Computer: ${result.computer}.
+              Вы: ${result.player}`);
+          } if (computer === 'бумага' && userAnswer === "ножницы") {
+              result.player++;
+              alert(`
+              Вы выиграли!
+              Computer: ${result.computer}.
+              Вы: ${result.player}`);
+          }  if (computer === 'бумага' && userAnswer === "камень") {
+              result.computer++;
+              alert(`
+              Вы проиграли!
+              Computer: ${result.computer}.
+              Вы: ${result.player}`);
+          } if (computer === 'ножницы' && userAnswer === "камень") {
+              result.player++;
+              alert(`
+              Вы выиграли!
+              Computer: ${result.computer}.
+              Вы: ${result.player}`);
+          } if (computer === 'ножницы' && userAnswer === "бумага") {
+              result.computer++;
+              alert(`
+              Вы проиграли!
+              Computer: ${result.computer}.
+              Вы: ${result.player}`);
+          } if (userAnswer === computer){
+              result.player++;
+              result.computer++;
+              alert(
+              `Ничья!
+              Computer: ${result.computer}.
+              Вы: ${result.player}`);
+          }
+          return start();
           }
       }
   }
