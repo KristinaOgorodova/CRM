@@ -17,12 +17,20 @@
             player:5,
             bot:5,
         };
+        
         return function start() {
             const computer = getRandomEvenOrOddNumber();
             let userAnswer = 0;
             userAnswer = +prompt('Введите количество шариков от 1 до 5: ');
             console.log(computer);
             console.log(userAnswer);
+            if (userAnswer > result.player || userAnswer < 0) {
+                alert(`Введите другое число`);
+                return start();
+            } else if (userAnswer === null) {
+                return;
+            }
+
             if (userAnswer % 2 === 0 || computer === "even") {
                 result.bot = result.bot + userAnswer;
                 result.player = result.player - userAnswer;
