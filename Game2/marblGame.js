@@ -3,12 +3,12 @@
 (() => {
 
     const getRandomEvenOrOddNumber = () => {
-        let str = '';
+        let str;
         let ran = Math.round(Math.random());
         if (ran  === 0 ) {
             return str = 'even';
         } else {
-            return str = 'odd';;
+            return str = 'odd';
         }
     };
 
@@ -18,23 +18,27 @@
             bot:5,
         };
         return function start() {
-            const bot = getRandomEvenOrOddNumber();
+            const computer = getRandomEvenOrOddNumber();
             let userAnswer = 0;
-            userAnswer = prompt('Введите количество шариков от 1 до 5: ');
-            console.log(bot);
+            userAnswer = +prompt('Введите количество шариков от 1 до 5: ');
+            console.log(computer);
             console.log(userAnswer);
-            if (userAnswer % 2 === 0 || bot === "even") {
-                result.bot += userAnswer;
-                result.player -= userAnswer;
+            if (userAnswer % 2 === 0 || computer === "even") {
+                result.bot = result.bot + userAnswer;
+                result.player = result.player - userAnswer;
                 alert(`Результат: У Вас:${result.player} , у Бота: ${result.bot}`);
-            } else if (userAnswer % 2 !== 0 || bot === "odd") {
-                result.bot -= userAnswer;
-                result.player += userAnswer;
-                alert(`Результат: У Вас:${result.player} , у Бота: ${result.bot}`);
+            } else if (userAnswer % 2 !== 0 || computer === "odd") {
+                result.bot = result.bot - userAnswer;
+                result.player = result.player + userAnswer;
+                alert(`Результат: У Вас: ${result.player} , у Бота: ${result.bot}`);
             }
-            if (result.bot == 0 && result.player == 0) {
+
+            if (result.bot <= 0) {
+                alert(`Вы выиграли!`)
+            } else if (result.player <= 0) {
+                alert(`Вы проиграли!`)
+            } else if (userAnswer == null) {
                 alert(`Игра окончена!У Вас:${result.player} , у Бота: ${result.bot}`)
-                return;
             } else {
                 start();
             }
