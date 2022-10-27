@@ -27,10 +27,8 @@
             if (userAnswer > result.player || userAnswer < 0) {
                 alert(`Введите другое число`);
                 return start();
-            } else if (userAnswer === null) {
-                return;
             }
-
+        
             if (userAnswer % 2 === 0 || computer === "even") {
                 result.bot = result.bot + userAnswer;
                 result.player = result.player - userAnswer;
@@ -41,15 +39,22 @@
                 alert(`Результат: У Вас: ${result.player} , у Бота: ${result.bot}`);
             }
 
+            let newGame = false;
             if (result.bot <= 0) {
-                alert(`Вы выиграли!`)
+                newGame = confirm(`Вы выиграли! Сыграем еще?`)
             } else if (result.player <= 0) {
-                alert(`Вы проиграли!`)
-            } else if (userAnswer == null) {
-                alert(`Игра окончена!У Вас:${result.player} , у Бота: ${result.bot}`)
+                newGame = confirm(`Вы проиграли! Сыграем еще?`)
+            } else {
+                start ();
+            }
+
+            if (!newGame) {
+                alert(`Игра окончена!У Вас: ${result.player} , у Бота: ${result.bot} `)
+                return;
             } else {
                 start();
             }
+
         }
     }
     window.marbl = game;
